@@ -23,8 +23,8 @@ function App() {
 
   // HANDLE SELECTION MOVEMENT;
   useEffect(() => {
-    console.log(counter);
     if (state !== ST.RUNNING) return;
+    console.log(counter);
 
     let timer;
 
@@ -40,6 +40,7 @@ function App() {
 
 
   const setTState = (stt) => {
+    console.log(stt);
     if (state === stt) return;
     if (stt === ST.STOP) setCounter(0);
     setState(stt);
