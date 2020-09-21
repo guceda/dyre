@@ -2,7 +2,18 @@ import React from 'react';
 
 
 
-const FooterMenu = ({ onPlay, onPause, onStop, onSpeedChange, state, speed }) => {
+const FooterMenu = (props) => {
+  const {
+    onPlay,
+    onPause,
+    onStop,
+    state,
+    speed,
+    characters,
+    onSpeedChange,
+    onCharactersChange,
+  } = props;
+
   return (
     <div>
       {/* PLAY */}
@@ -28,6 +39,14 @@ const FooterMenu = ({ onPlay, onPause, onStop, onSpeedChange, state, speed }) =>
         min={20}
         max={100}
         step={5}
+      />
+      <input
+        onChange={(e) => onCharactersChange(e.target.value)}
+        value={characters}
+        type={"range"}
+        min={5}
+        max={50}
+        step={1}
       />
     </div>
   );

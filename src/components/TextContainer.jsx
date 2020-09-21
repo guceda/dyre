@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 
-const TextContainer = function ({ text, caretPos, selection, state }) {
+const TextContainer = function ({ text, caretPos, characters, state }) {
 
   const textRef = useRef(null);
 
@@ -12,7 +12,7 @@ const TextContainer = function ({ text, caretPos, selection, state }) {
   useEffect(() => {
     switch (state) {
       case 'running':
-        setSelectionRange(textRef.current, caretPos, caretPos + selection);
+        setSelectionRange(textRef.current, caretPos, caretPos + characters);
         break;
       case 'pause':
         //nothing
@@ -23,7 +23,7 @@ const TextContainer = function ({ text, caretPos, selection, state }) {
       default:
         break;
     }
-  }, [caretPos, selection, state])
+  }, [caretPos, characters, state])
 
 
   const setSelectionRange = (element, selectionStart, selectionEnd) => {

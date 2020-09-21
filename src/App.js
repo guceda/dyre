@@ -11,7 +11,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop' };
-const DEFAULT = { SPEED: 40, TEXT: texts.es[0] };
+const DEFAULT = { SPEED: 40, TEXT: texts.es[0], CHARACTERS: 30 };
 
 function App() {
   const [counter, setCounter] = useState(0);
@@ -19,6 +19,7 @@ function App() {
 
   const [text, setText] = useState(DEFAULT.TEXT);
   const [speed, setSpeed] = useState(DEFAULT.SPEED);
+  const [characters, setCharacters] = useState(DEFAULT.CHARACTERS);
 
 
   // HANDLE SELECTION MOVEMENT;
@@ -56,7 +57,7 @@ function App() {
         state={state}
         text={text}
         caretPos={counter}
-        selection={30}
+        characters={characters}
       />
       <FooterMenu
         speed={speed}
@@ -65,6 +66,7 @@ function App() {
         onPause={() => setTState(ST.PAUSE)}
         onStop={() => setTState(ST.STOP)}
         onSpeedChange={setSpeed}
+        onCharactersChange={setCharacters}
       />
       <LinearProgress variant="determinate" value={progressPct()} />
     </div>
