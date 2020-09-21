@@ -6,24 +6,25 @@ import texts from './texts';
 import TextContainer from './components/TextContainer';
 import FooterMenu from './components/FooterMenu';
 
-const st = {
-  RUNNING: 'running',
-  PAUSE: 'pause',
-  STOP: 'stop'
-}
+import LinearProgress from '@material-ui/core/LinearProgress';
+
+
+
+const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop' };
+const DEFAULT = { SPEED: 40, TEXT: texts.es[0] };
 
 function App() {
   const [counter, setCounter] = useState(0);
-  const [state, setState] = useState(st.STOP);
+  const [state, setState] = useState(ST.STOP);
 
-  const [text, setText] = useState(texts.es[0]);
-  const [speed, setSpeed] = useState(30);
+  const [text, setText] = useState(DEFAULT.TEXT);
+  const [speed, setSpeed] = useState(DEFAULT.SPEED);
 
 
   // HANDLE SELECTION MOVEMENT;
   useEffect(() => {
     console.log(counter);
-    if (state !== st.RUNNING) return;
+    if (state !== ST.RUNNING) return;
 
     let timer;
 
@@ -31,7 +32,7 @@ function App() {
       timer = setInterval(() => setCounter(counter + 1), speed);
     } else {
       console.log('done');
-      setState(st.STOP);
+      setState(ST.STOP);
       setCounter(0);
     }
     return () => clearInterval(timer);
@@ -39,11 +40,14 @@ function App() {
 
 
   const setTState = (stt) => {
-    if(state === stt) return;
-    if(stt === st.STOP) setCounter(0);
+    if (state === stt) return;
+    if (stt === ST.STOP) setCounter(0);
     setState(stt);
   }
 
+  const progressPct = () => {
+    return (counter*100)/text.content.length;
+  }
 
   return (
     <div>
@@ -56,11 +60,12 @@ function App() {
       <FooterMenu
         speed={speed}
         state={state}
-        onPlay={() => setTState(st.RUNNING)}
-        onPause={() => setTState(st.PAUSE)}
-        onStop={() => setTState(st.STOP)}
+        onPlay={() => setTState(ST.RUNNING)}
+        onPause={() => setTState(ST.PAUSE)}
+        onStop={() => setTState(ST.STOP)}
         onSpeedChange={setSpeed}
       />
+      <LinearProgress variant="determinate" value={progressPct()} />
     </div>
   );
 }
