@@ -1,35 +1,40 @@
 import React, { useEffect, useRef } from 'react';
 
 
-const TextContainer = function ({ text, caretPos, selection }) {
-  
+const TextContainer = function ({ text, caretPos, selection, state }) {
+
   const textRef = useRef(null);
 
+  // FOCUS THE THEX AREA
+  useEffect(() => textRef.current.focus(), [state])
+
+  // Move everytime any of them change.
   useEffect(() => {
-    textRef.current.focus();
-  },[]) 
+    switch (state) {
+      case 'running':
+        setSelectionRange(textRef.current, caretPos, caretPos + selection);
+        break;
+      case 'pause':
+        //nothing
+        break;
+      case 'stop':
+        setSelectionRange(textRef.current, 0, 0);
+        break;
+      default:
+        break;
+    }
+  }, [caretPos, selection, state])
 
-  useEffect(() => {
-    const textEl = textRef.current;
-
-    (selection > 0) ?
-      setSelectionRange(textEl, caretPos, caretPos + selection) :
-      setCaretToPos(textEl, caretPos);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [caretPos, selection])
 
   const setSelectionRange = (element, selectionStart, selectionEnd) => {
     element.setSelectionRange(selectionStart, selectionEnd);
   }
 
-  const setCaretToPos = (el, pos) => setSelectionRange(el, pos, pos);
-
   return <textarea
     ref={textRef}
     readOnly
-    style={{ width: '100%', height: '100vh', backgroundColor:'black'}}
-    onClick={() => {}}
+    style={{ width: '100%', height: '100px', backgroundColor: 'white' }}
+    onClick={() => { }}
     value={text.content}
   ></textarea>;
 };

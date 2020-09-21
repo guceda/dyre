@@ -1,4 +1,12 @@
+body {
+  background-color: white;
+}
+
 ::selection {
   color: black;
   background: yellow;
+}
+
+input:focus, textarea:focus, select:focus{
+  outline: none;
 }
