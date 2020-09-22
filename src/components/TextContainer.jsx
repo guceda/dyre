@@ -11,6 +11,7 @@ const useStyles = makeStyles(() => ({
     overflow: 'hidden',
   },
   textArea: {
+    overflow: 'hidden',
     width: '100%',
     height: 'calc(100vh - 20rem)',
     backgroundColor: ({ background }) => background, // text area background

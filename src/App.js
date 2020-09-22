@@ -5,36 +5,25 @@ import texts from './texts';
 
 import TextContainer from './components/TextContainer';
 import FooterMenu from './components/FooterMenu';
+import Backdrop from './components/Backdrop';
 import themes from './themes';
 
 import { ThemeProvider } from '@material-ui/core/styles';
 import { makeStyles } from "@material-ui/core/styles";
 
 import LinearProgress from '@material-ui/core/LinearProgress';
-import Backdrop from '@material-ui/core/Backdrop';
 
 
 
 const useStyles = makeStyles(() => ({
   body: {
-    backgroundColor: ({background}) => background,
+    backgroundColor: ({ background }) => background,
+    height: '100vh',
   },
-
-  '::selection': {
-    color: 'black',
-    background: 'white',
+  progress: {
+    zIndex:'11'
   }
-
 }));
-
-
-
-// const useStyles = makeStyles((theme) => ({
-//   backdrop: {
-//     zIndex: theme.zIndex.drawer + 1,
-//     color: "#fff"
-//   }
-// }));
 
 
 const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop' };
@@ -42,16 +31,16 @@ const DEFAULT = { SPEED: 40, TEXT: texts.es[0], CHARACTERS: 30 };
 
 function App() {
 
-  
+
   const [counter, setCounter] = useState(0);
   const [state, setState] = useState(ST.STOP);
-  
+
   const [theme, setTheme] = useState(themes.light);
-  
+
   const [text, setText] = useState(DEFAULT.TEXT);
   const [speed, setSpeed] = useState(DEFAULT.SPEED);
   const [characters, setCharacters] = useState(DEFAULT.CHARACTERS);
-  
+
   const classes = useStyles(theme);
 
 
@@ -72,6 +61,21 @@ function App() {
     return () => clearInterval(timer);
   }, [counter, speed, text, state]);
 
+  //ON SPACEBAR CLICK;
+  useEffect(() => {
+    document.body.onkeyup = function (e) {
+      if (e.keyCode === 32) {
+        debugger;
+        console.log('spacebar');
+        if (state === ST.RUNNING) {
+          setState(ST.PAUSE);
+        } else if (state === ST.PAUSE || state === ST.STOP) {
+          setState(ST.RUNNING);
+        }
+      }
+    }
+  }, [state])
+
 
   const setTState = (stt) => {
     console.log(stt);
@@ -84,9 +88,20 @@ function App() {
     return (counter * 100) / text.content.length;
   }
 
+  const handleBodyClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
   return (
-      <div className={classes.body}>
-        <LinearProgress thickness={14} variant="determinate" value={progressPct()} />
+    <>
+      <div className={classes.body} onClick={handleBodyClick}>
+        <LinearProgress
+          thickness={14}
+          variant="determinate"
+          value={progressPct()}
+          className={classes.progress}
+        />
         <TextContainer
           theme={theme}
           state={state}
@@ -94,20 +109,9 @@ function App() {
           caretPos={counter}
           characters={characters}
         />
-        <FooterMenu
-          speed={speed}
-          state={state}
-          onPlay={() => setTState(ST.RUNNING)}
-          onPause={() => setTState(ST.PAUSE)}
-          onStop={() => setTState(ST.STOP)}
-          onSpeedChange={setSpeed}
-          onCharactersChange={setCharacters}
-        />
-        {/* <Backdrop className={classes.backdrop} open={true} onClick={()=>{}}>
-        <CircularProgress color="inherit" />
-      </Backdrop> */}
-
+        <Backdrop open={state !== ST.RUNNING} />
       </div>
+    </>
   );
 
 }
