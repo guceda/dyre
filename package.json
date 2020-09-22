@@ -1,6 +1,6 @@
 {
   "homepage": "http://guceda.github.io/dyre",
-  "name": "readify",
+  "name": "dyre",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

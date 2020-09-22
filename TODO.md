@@ -6,6 +6,8 @@
 - Add amount characters handler
 - Smooth speed when starting
 - Refactor
+- Readme
+- Pages https://guceda.github.io/dyre/
 
 ### V2
 - Text selection
