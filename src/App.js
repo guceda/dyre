@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
 
 
 const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop' };
-const DEFAULT = { SPEED: 40, TEXT: texts.es[0], CHARACTERS: 30 };
+const DEFAULT = { SPEED: 10, TEXT: texts.es[0], CHARACTERS: 15 };
 
 function App() {
 
@@ -80,7 +80,10 @@ function App() {
   const setTState = (stt) => {
     console.log(stt);
     if (state === stt) return;
-    if (stt === ST.STOP) setCounter(0);
+    if (stt === ST.STOP){
+      setCounter(0);
+
+    }
     setState(stt);
   }
 
@@ -91,6 +94,10 @@ function App() {
   const handleBodyClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
+  }
+
+  const changeTheme = () => {
+    setTheme(themes[theme.id === 'light' ? 'dark': 'light']);
   }
 
   return (
@@ -109,7 +116,7 @@ function App() {
           caretPos={counter}
           characters={characters}
         />
-        <Backdrop open={state !== ST.RUNNING} />
+        <Backdrop open={state == ST.PAUSE} title={text.title} theme={theme} changeTheme={changeTheme} stop={()=> setTState(ST.STOP)} />
       </div>
     </>
   );

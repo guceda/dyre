@@ -5,6 +5,6 @@
   opacity: 1;
 }
 
-input:focus, textarea:focus, select:focus{
+input:focus, textarea:focus, div:focus, select:focus{
   outline: none;
 }

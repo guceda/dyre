@@ -40,7 +40,7 @@ const TextContainer = function ({ text, caretPos, characters, state, theme }) {
         //nothing
         break;
       case 'stop':
-        setSelectionRange(textRef.current, 0, 0);
+        setSelectionRange(textRef.current, 0, caretPos + characters);
         break;
       default:
         break;
