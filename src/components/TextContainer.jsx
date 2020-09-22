@@ -1,11 +1,32 @@
 import React, { useEffect, useRef } from 'react';
 
+import { makeStyles } from '@material-ui/core';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
-const TextContainer = function ({ text, caretPos, characters, state }) {
+
+
+const useStyles = makeStyles(() => ({
+  container: {
+    margin: '10rem 10rem',
+    overflow: 'hidden',
+  },
+  textArea: {
+    width: '100%',
+    height: 'calc(100vh - 20rem)',
+    backgroundColor: ({ background }) => background, // text area background
+    color: ({ font }) => font, //text color
+    resize: 'none',
+    border: '0px',
+  },
+}));
+
+
+const TextContainer = function ({ text, caretPos, characters, state, theme }) {
 
   const textRef = useRef(null);
+  const classes = useStyles(theme);
 
-  // FOCUS THE THEX AREA
+  // FOCUS THE TEXT AREA
   useEffect(() => textRef.current.focus(), [state])
 
   // Move everytime any of them change.
@@ -30,13 +51,18 @@ const TextContainer = function ({ text, caretPos, characters, state }) {
     element.setSelectionRange(selectionStart, selectionEnd);
   }
 
-  return <textarea
-    ref={textRef}
-    readOnly
-    style={{ width: '100%', height: '100px', backgroundColor: 'white' }}
-    onClick={() => { }}
-    value={text.content}
-  ></textarea>;
+  return (
+    <div className={classes.container}>
+      <TextareaAutosize
+        rowsMin={40}
+        rowsMax={40}
+        ref={textRef}
+        readOnly
+        className={classes.textArea}
+        value={text.content}
+      ></TextareaAutosize>
+    </div>
+  )
 };
 
 

@@ -1,10 +1,8 @@
-body {
-  background-color: white;
-}
 
 ::selection {
   color: black;
   background: yellow;
+  opacity: 1;
 }
 
 input:focus, textarea:focus, select:focus{
