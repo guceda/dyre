@@ -1,0 +1,1 @@
+{"version":3,"sources":["App.css"],"names":[],"mappings":"AACA,YACE,UAAY,CACZ,eAAkB,CAClB,SACF,CAEA,kDACE,YACF","file":"main.e83b19eb.chunk.css","sourcesContent":["\n::selection {\n  color: black;\n  background: yellow;\n  opacity: 1;\n}\n\ninput:focus, textarea:focus, div:focus, select:focus{\n  outline: none;\n}"]}
