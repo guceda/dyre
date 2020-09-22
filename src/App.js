@@ -14,7 +14,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop' };
-const DEFAULT = { SPEED: 20, TEXT: texts.es[0], CHARACTERS: 15 };
+const DEFAULT = {
+  SPEED: 20,
+  TEXT: texts.es[0],
+  CHARACTERS: 15,
+  THEME:themes.dark,
+  STATUS:ST.STOP,
+};
 
 
 
@@ -48,10 +54,8 @@ function App() {
 
 
   const [counter, setCounter] = useState(0);
-  const [state, setState] = useState(ST.STOP);
-
-  const [theme, setTheme] = useState(themes.light);
-
+  const [state, setState] = useState(DEFAULT.STATUS);
+  const [theme, setTheme] = useState(DEFAULT.THEME);
   const [text, setText] = useState(DEFAULT.TEXT);
   const [speed, setSpeed] = useState(DEFAULT.SPEED);
   const [characters, setCharacters] = useState(DEFAULT.CHARACTERS);
@@ -105,7 +109,7 @@ function App() {
     e.stopPropagation();
   }
 
-  const changeTheme = (theme) => {
+  const changeTheme = () => {
     setTheme(themes[theme.id === 'light' ? 'dark' : 'light']);
   }
 

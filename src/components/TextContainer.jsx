@@ -28,10 +28,11 @@ const TextContainer = function ({ text, caretPos, characters, state, theme }) {
   const classes = useStyles(theme);
 
   // FOCUS THE TEXT AREA
-  useEffect(() => textRef.current.focus(), [state])
+  //useEffect(() => textRef.current.focus(), [state])
 
   // Move everytime any of them change.
   useEffect(() => {
+    textRef.current.focus(); // FIXME: remove;
     switch (state) {
       case 'running':
         setSelectionRange(textRef.current, caretPos, caretPos + characters);
