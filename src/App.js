@@ -4,11 +4,11 @@ import './App.css';
 import texts from './texts';
 
 import TextContainer from './components/TextContainer';
-import FooterMenu from './components/FooterMenu';
-import Backdrop from './components/Backdrop';
+import Menu from './components/Menu';
+import BackdropCmp from './components/Backdrop';
 import themes from './themes';
 
-import { ThemeProvider } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { makeStyles } from "@material-ui/core/styles";
 
 import LinearProgress from '@material-ui/core/LinearProgress';
@@ -21,9 +21,24 @@ const useStyles = makeStyles(() => ({
     height: '100vh',
   },
   progress: {
-    zIndex:'11'
+    zIndex: '100'
   }
 }));
+
+const BorderLinearProgress = withStyles((theme) => ({
+  root: {
+    height: 7,
+  },
+  progress: {
+    zIndex: '100'
+  },
+  colorPrimary: {
+    backgroundColor: theme.palette.grey[theme.id === 'light' ? 200 : 700],
+  },
+  bar: {
+    backgroundColor: 'yellow',
+  },
+}))(LinearProgress);
 
 
 const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop' };
@@ -47,14 +62,12 @@ function App() {
   // HANDLE SELECTION MOVEMENT;
   useEffect(() => {
     if (state !== ST.RUNNING) return;
-    console.log(counter);
 
     let timer;
 
     if (counter < text.content.length) {
       timer = setInterval(() => setCounter(counter + 1), speed);
     } else {
-      console.log('done');
       setState(ST.STOP);
       setCounter(0);
     }
@@ -65,26 +78,22 @@ function App() {
   useEffect(() => {
     document.body.onkeyup = function (e) {
       if (e.keyCode === 32) {
-        debugger;
-        console.log('spacebar');
         if (state === ST.RUNNING) {
           setState(ST.PAUSE);
-        } else if (state === ST.PAUSE || state === ST.STOP) {
+          setCounter(counter- 40); // go a bit back to ease recovery
+        } else if (state === ST.PAUSE) {
+          setState(ST.RUNNING);
+        } else if (state === ST.STOP) {
           setState(ST.RUNNING);
         }
       }
     }
-  }, [state])
+  }, [state, counter])
 
 
-  const setTState = (stt) => {
-    console.log(stt);
-    if (state === stt) return;
-    if (stt === ST.STOP){
-      setCounter(0);
-
-    }
-    setState(stt);
+  const handleStop = () => {
+    setCounter(0);
+    setState(ST.STOP);
   }
 
   const progressPct = () => {
@@ -97,13 +106,13 @@ function App() {
   }
 
   const changeTheme = () => {
-    setTheme(themes[theme.id === 'light' ? 'dark': 'light']);
+    setTheme(themes[theme.id === 'light' ? 'dark' : 'light']);
   }
 
   return (
     <>
       <div className={classes.body} onClick={handleBodyClick}>
-        <LinearProgress
+        <BorderLinearProgress
           thickness={14}
           variant="determinate"
           value={progressPct()}
@@ -116,7 +125,16 @@ function App() {
           caretPos={counter}
           characters={characters}
         />
-        <Backdrop open={state == ST.PAUSE} title={text.title} theme={theme} changeTheme={changeTheme} stop={()=> setTState(ST.STOP)} />
+        <Menu
+          open={state === ST.PAUSE}
+          title={text.title}
+          theme={theme}
+          changeTheme={changeTheme}
+          stop={handleStop}
+        />
+        <BackdropCmp
+          open={state === ST.STOP}
+        />
       </div>
     </>
   );
