@@ -19,14 +19,14 @@ const useStyles = makeStyles(() => ({
 
 
 
-const BackdropCmp = ({ theme, open, title, stop, changeTheme }) => {
+const BackdropCmp = ({ open, start}) => {
 
   const classes = useStyles();
 
   return (
     <Backdrop className={classes.backdrop} open={open} onClick={() => { }}>
       <div style={{ color: 'white', fontSize: 40, display:'block' }}>Press space bar to start reading</div>
-        <IconButton onClick={stop} >
+        <IconButton onClick={start} >
           <SpaceBarIcon style={{ fontSize: 100, color: 'white' }} />
         </IconButton>
 

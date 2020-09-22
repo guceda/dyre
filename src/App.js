@@ -13,6 +13,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import LinearProgress from '@material-ui/core/LinearProgress';
 
+const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop' };
+const DEFAULT = { SPEED: 20, TEXT: texts.es[0], CHARACTERS: 15 };
+
 
 
 const useStyles = makeStyles(() => ({
@@ -40,9 +43,6 @@ const BorderLinearProgress = withStyles((theme) => ({
   },
 }))(LinearProgress);
 
-
-const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop' };
-const DEFAULT = { SPEED: 10, TEXT: texts.es[0], CHARACTERS: 15 };
 
 function App() {
 
@@ -105,7 +105,7 @@ function App() {
     e.stopPropagation();
   }
 
-  const changeTheme = () => {
+  const changeTheme = (theme) => {
     setTheme(themes[theme.id === 'light' ? 'dark' : 'light']);
   }
 
@@ -134,6 +134,7 @@ function App() {
         />
         <BackdropCmp
           open={state === ST.STOP}
+          start={() => setState(ST.RUNNING)}
         />
       </div>
     </>
