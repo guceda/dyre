@@ -6,12 +6,11 @@ import texts from './texts';
 import TextContainer from './components/TextContainer';
 import Menu from './components/Menu';
 import BackdropCmp from './components/Backdrop';
+import Progress from './components/Progress';
 import themes from './themes';
 
-import { withStyles } from '@material-ui/core/styles';
 import { makeStyles } from "@material-ui/core/styles";
 
-import LinearProgress from '@material-ui/core/LinearProgress';
 
 const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop' };
 const DEFAULT = {
@@ -34,20 +33,7 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const BorderLinearProgress = withStyles((theme) => ({
-  root: {
-    height: 7,
-  },
-  progress: {
-    zIndex: '100'
-  },
-  colorPrimary: {
-    backgroundColor: theme.palette.grey[theme.id === 'light' ? 200 : 700],
-  },
-  bar: {
-    backgroundColor: 'yellow',
-  },
-}))(LinearProgress);
+
 
 
 function App() {
@@ -116,7 +102,7 @@ function App() {
   return (
     <>
       <div className={classes.body} onClick={handleBodyClick}>
-        <BorderLinearProgress
+        <Progress
           thickness={14}
           variant="determinate"
           value={progressPct()}

@@ -1,21 +1,50 @@
 import React from 'react';
-import CircularProgress from '@material-ui/core/LinearProgress';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import StopIcon from '@material-ui/icons/Stop';
 import PauseIcon from '@material-ui/icons/Pause';
 
-import { IconButton, Grid, makeStyles, Modal, Typography, withStyles, Switch } from '@material-ui/core';
+import { IconButton, Grid, makeStyles, Modal, Typography, withStyles, Switch, Paper } from '@material-ui/core';
 
 
-
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   body: {
     backgroundColor: ({ background }) => background,
     height: '100vh',
   },
-  Menu: {
-    zIndex: 10,
-    color: 'rgba(0,0,0,0.6)'
+  root: {
+    flexGrow: 1,
+    height: '100vh',
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary
+  },
+  title: {
+    color: 'white',
+    fontSize: 40,
+    textAlign: 'center'
+  },
+  pause: {
+    fontSize: 150,
+    color: 'white',
+  },
+  pauseContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  options: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    margin: '0px 30px',
+  },
+  stopContainer: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  stop: {
+    fontSize: 60,
+    color: 'white'
   }
 }));
 
@@ -59,27 +88,65 @@ const Menu = ({ theme, open, title, stop, changeTheme }) => {
 
   const classes = useStyles();
 
+  // return (
+  //   <Modal open={open} >
+  //     <div style={{ height: '100%', padding: '10px 30px', border: '0px' }}>
+  //       <h2 style={{ color: 'white', fontSize: 40 }}>{title}</h2>
+  //       <PauseIcon style={{ fontSize: 150, color: 'white' }} />
+
+  //       <IconButton onClick={stop} >
+  //         <StopIcon style={{ fontSize: 60, color: 'white' }} />
+  //       </IconButton>
+
+  //       <Typography component="div">
+  //       <Grid component="label" container alignItems="center" spacing={1}>
+  //         <Grid item>dark</Grid>
+  //         <Grid item>
+  //           <AntSwitch checked={theme.id === 'light'} onChange={changeTheme} name="checkedC" />
+  //         </Grid>
+  //         <Grid item>light</Grid>
+  //       </Grid>
+  //     </Typography>
+
+
+  //     </div>
+  //   </Modal>
+  // );
+
   return (
-    <Modal open={open} >
-      <div style={{ height: '100%', padding: '10px 30px', border: '0px' }} className={classes.paper}>
-        <h2 style={{ color: 'white', fontSize: 40 }}>{title}</h2>
-        <PauseIcon style={{ fontSize: 150, color: 'white' }} />
-
-        <IconButton onClick={stop} >
-          <StopIcon style={{ fontSize: 60, color: 'white' }} />
-        </IconButton>
-
-        <Typography component="div">
-        <Grid component="label" container alignItems="center" spacing={1}>
-          <Grid item>dark</Grid>
-          <Grid item>
-            <AntSwitch checked={theme.id === 'light'} onChange={changeTheme} name="checkedC" />
+    <Modal open={open}>
+      <div className={classes.root}>
+        <Grid container className={classes.root} spacing={3}>
+          <Grid item xs={12}>
+            <h2 className={classes.title}>{title}</h2>
           </Grid>
-          <Grid item>light</Grid>
+          <Grid item xs={12} className={classes.pauseContainer}>
+            <PauseIcon className={classes.pause} />
+          </Grid>
+          <Grid item xs={12} className={classes.options}>
+            <Grid item xs={2}>
+              <Paper className={classes.paper}>xs=6</Paper>
+            </Grid>
+            <Grid item xs={2}>
+              <Paper className={classes.paper}>xs=3</Paper>
+            </Grid>
+            <Grid item xs={2}>
+              <Paper className={classes.paper}>xs=3</Paper>
+            </Grid>
+            <Grid item xs={2}>
+              <Paper className={classes.paper}>xs=3</Paper>
+            </Grid>
+            <Grid item xs={2}>
+              <Paper className={classes.paper}>xs=3</Paper>
+            </Grid>
+            <Grid item xs={2} className={classes.stopContainer}>
+              <IconButton onClick={stop}>
+                <StopIcon className={classes.stop} />
+              </IconButton>
+            </Grid>
+          </Grid>
+
         </Grid>
-      </Typography>
-
-
       </div>
     </Modal>
   );
