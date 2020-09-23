@@ -17,7 +17,7 @@ import { WPMtoMSC } from './utils/utils';
 const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop' };
 const DEFAULT = {
   SPEED: 250, //wpm
-  TEXT: texts.en[0],
+  TEXT: texts.es[0],
   CHARACTERS: 15,
   THEME: themes.dark,
   STATUS: ST.STOP,
