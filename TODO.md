@@ -1,9 +1,7 @@
 ## TODO
 
 ### MVP
-- Style menu buttons
-- Add speed handler
-- Add amount characters handler
+- Fix speed units
 - Smooth speed when starting
 - Refactor
 - Readme

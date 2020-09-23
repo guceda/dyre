@@ -176,10 +176,10 @@ const Menu = ({ theme, open, title, stop, changeTheme, speed, setSpeed }) => {
                 getAriaValueText={valueText}
                 aria-labelledby="discrete-slider"
                 valueLabelDisplay="auto"
-                step={5}
+                step={2}
                 marks
                 min={5}
-                max={110}
+                max={50}
               />
             </Grid>
 
