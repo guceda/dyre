@@ -1,7 +1,7 @@
 ## TODO
 
 ### MVP
-- Añadir velocidad pantalla principal
+- Añadir velocidad actual pantalla principal
 - Fix speed units
 - Smooth speed when starting
 - Refactor

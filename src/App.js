@@ -11,11 +11,13 @@ import themes from './themes';
 
 import { makeStyles } from "@material-ui/core/styles";
 
+import { WPMtoMSC } from './utils/utils'; 
+
 
 const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop' };
 const DEFAULT = {
-  SPEED: 20,
-  TEXT: texts.es[0],
+  SPEED: 250, //wpm
+  TEXT: texts.en[0],
   CHARACTERS: 15,
   THEME:themes.dark,
   STATUS:ST.STOP,
@@ -38,7 +40,6 @@ const useStyles = makeStyles(() => ({
 
 function App() {
 
-
   const [counter, setCounter] = useState(0);
   const [state, setState] = useState(DEFAULT.STATUS);
   const [theme, setTheme] = useState(DEFAULT.THEME);
@@ -56,10 +57,11 @@ function App() {
     let timer;
 
     if (counter < text.content.length) {
-      timer = setInterval(() => setCounter(counter + 1), speed);
+      timer = setInterval(() => setCounter(counter + 1), WPMtoMSC(text.content,speed));
     } else {
       setState(ST.STOP);
       setCounter(0);
+      console.log(`Done at ${Date.now()}`)
     }
     return () => clearInterval(timer);
   }, [counter, speed, text, state]);
@@ -75,6 +77,7 @@ function App() {
         } else if (state === ST.PAUSE) {
           setState(ST.RUNNING);
         } else if (state === ST.STOP) {
+          console.log(`Start at ${Date.now()}`)
           setState(ST.RUNNING);
         }
       }
