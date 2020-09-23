@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/dyre/static/css/main.e83b19eb.chunk.css",
-    "main.js": "/dyre/static/js/main.6743a765.chunk.js",
-    "main.js.map": "/dyre/static/js/main.6743a765.chunk.js.map",
+    "main.js": "/dyre/static/js/main.fb211549.chunk.js",
+    "main.js.map": "/dyre/static/js/main.fb211549.chunk.js.map",
     "runtime-main.js": "/dyre/static/js/runtime-main.d3e319bd.js",
     "runtime-main.js.map": "/dyre/static/js/runtime-main.d3e319bd.js.map",
     "static/js/2.4486f388.chunk.js": "/dyre/static/js/2.4486f388.chunk.js",
     "static/js/2.4486f388.chunk.js.map": "/dyre/static/js/2.4486f388.chunk.js.map",
     "index.html": "/dyre/index.html",
-    "precache-manifest.47bd383720f136929f9abd7923b4a53c.js": "/dyre/precache-manifest.47bd383720f136929f9abd7923b4a53c.js",
+    "precache-manifest.f8a535e6fcda0c6baceceb6fd60ace22.js": "/dyre/precache-manifest.f8a535e6fcda0c6baceceb6fd60ace22.js",
     "service-worker.js": "/dyre/service-worker.js",
     "static/css/main.e83b19eb.chunk.css.map": "/dyre/static/css/main.e83b19eb.chunk.css.map",
     "static/js/2.4486f388.chunk.js.LICENSE.txt": "/dyre/static/js/2.4486f388.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.d3e319bd.js",
     "static/js/2.4486f388.chunk.js",
     "static/css/main.e83b19eb.chunk.css",
-    "static/js/main.6743a765.chunk.js"
+    "static/js/main.fb211549.chunk.js"
   ]
 }
