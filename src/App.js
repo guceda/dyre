@@ -121,6 +121,8 @@ function App() {
           theme={theme}
           changeTheme={changeTheme}
           stop={handleStop}
+          speed={speed}
+          setSpeed={setSpeed}
         />
         <BackdropCmp
           open={state === ST.STOP}
