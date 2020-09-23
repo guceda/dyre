@@ -172,14 +172,13 @@ const Menu = ({ theme, open, title, stop, changeTheme, speed, setSpeed }) => {
             <Grid item xs={4}>
               <PrettoSlider
                 onChange={(ev,value) => setSpeed(value)}
-                defaultValue={speed}
+                value={speed}
                 getAriaValueText={valueText}
                 aria-labelledby="discrete-slider"
                 valueLabelDisplay="auto"
-                step={10}
-                marks
-                min={50}
-                max={600}
+                step={20}
+                min={150}
+                max={800}
               />
             </Grid>
 
