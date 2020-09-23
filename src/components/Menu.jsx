@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: 'white',
     fontSize: 40,
-    textAlign: 'center'
+    display: 'flex',
+    justifyContent: 'center',
   },
   pause: {
     fontSize: 150,
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
   pauseContainer: {
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   options: {
     display: 'flex',
