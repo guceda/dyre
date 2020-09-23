@@ -70,7 +70,8 @@ function App() {
       if (e.keyCode === 32) {
         if (state === ST.RUNNING) {
           setState(ST.PAUSE);
-          setCounter(counter- 40); // go a bit back to ease recovery
+          //go a bit back to ease recovery
+          setCounter(counter > 42 ? counter - 40 : counter); //FIXME: make it better
         } else if (state === ST.PAUSE) {
           setState(ST.RUNNING);
         } else if (state === ST.STOP) {

@@ -176,7 +176,7 @@ const Menu = ({ theme, open, title, stop, changeTheme, speed, setSpeed }) => {
                 getAriaValueText={valueText}
                 aria-labelledby="discrete-slider"
                 valueLabelDisplay="auto"
-                step={2}
+                step={1}
                 marks
                 min={5}
                 max={50}
