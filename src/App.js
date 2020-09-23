@@ -15,7 +15,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop' };
 const DEFAULT = {
   SPEED: 20,
-  TEXT: texts.es[0],
+  TEXT: texts.en[0],
   CHARACTERS: 15,
   THEME:themes.dark,
   STATUS:ST.STOP,
