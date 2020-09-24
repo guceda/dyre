@@ -1,53 +1,85 @@
 import React from 'react';
+import cx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import Avatar from '@material-ui/core/Avatar';
+import Slider from '@material-ui/core/Slider';
 
-const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
+const useStyles = makeStyles(({ spacing, palette }) => {
+  return {
+    card: {
+      cursor: 'pointer',
+      background: (selected) => selected ? 'white' : 'rgba(255,255,255, 0.6)',
+      margin: '7px',
+      display: 'flex',
+      padding: spacing(2),
+      minWidth: 288,
+      borderRadius: 12,
+      boxShadow: '0 2px 4px 0 rgba(138, 148, 159, 0.2)',
+      '& > *:nth-child(1)': {
+        marginRight: spacing(2),
+      },
+      '& > *:nth-child(2)': {
+        flex: 'auto',
+      },
+    },
+    avatar: {},
+    heading: {
+      margin: 0,
+      fontSize: 16,
+    },
+    subheader: {
+      fontSize: 14,
+      color: palette.grey[600],
+      letterSpacing: '1px',
+      marginBottom: 4,
+    },
+    value: {
+      marginLeft: 8,
+      fontSize: 14,
+      color: palette.grey[500],
+    },
+  };
 });
 
-export default function SimpleCard() {
-  const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+const useSliderStyles = makeStyles(() => ({
+  root: {
+    height: 4,
+  },
+  rail: {
+    borderRadius: 10,
+    height: 4,
+    backgroundColor: 'rgb(202,211,216)',
+  },
+  track: {
+    borderRadius: 10,
+    height: 4,
+    backgroundColor: 'rgb(117,156,250)',
+  },
+  thumb: {
+    display: 'none',
+  },
+}));
 
+export const KanbanCardDemo = function KanbanCard(
+  { onClick, selected, title, lang, words, level }) {
+  const styles = useStyles(selected);
+  const sliderStyles = useSliderStyles();
   return (
-    <Card className={classes.root}>
-      <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="h2">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
+    <Card onClick={onClick} className={cx(styles.card)} elevation={0}>
+      <Box>
+        <h3 className={styles.heading}>{title}</h3>
+        <p className={styles.subheader}>{`${lang} • ${words} words`}</p>
+
+        <Box display={'flex'} alignItems={'center'}>
+          <Slider classes={sliderStyles} defaultValue={level*10} />
+          <span className={styles.value}>{`${level}/10`}</span>
+        </Box>
+      </Box>
     </Card>
   );
-}
+};
+
+
+export default KanbanCardDemo;

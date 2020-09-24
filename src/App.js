@@ -17,7 +17,7 @@ import { WPMtoMSC } from './utils/utils';
 const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop' };
 const DEFAULT = {
   SPEED: 250, //wpm
-  TEXT: texts.es[0],
+  TEXT: texts[1],
   CHARACTERS: 15,
   THEME: themes.dark,
   STATUS: ST.STOP,
@@ -64,7 +64,9 @@ function App() {
     let timer;
 
     if (counter < text.content.length) {
-      timer = setInterval(() => setCounter(counter + 1), WPMtoMSC(text.content, speed));
+      timer = setInterval(() => {
+        setCounter(counter + 1)
+      },  WPMtoMSC(text.words, text.characters, speed));
     } else {
       setState(ST.STOP);
       setCounter(0);
@@ -138,6 +140,9 @@ function App() {
           defaultSpeed={DEFAULT.SPEED}
         />
         <BackdropCmp
+          texts={texts}
+          selectedText={text}
+          setText={setText}
           theme={theme}
           open={state === ST.STOP}
           start={() => setState(ST.RUNNING)}

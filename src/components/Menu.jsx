@@ -176,7 +176,7 @@ const Menu = (
             <Grid item xs={2}>
               {/* Empty slot */}
             </Grid>
-            <Grid container xs={4} direction={'row'}>
+            <Grid container direction={'row'}>
               <Grid item xs={11}>
                 <PrettoSlider
                   onChange={(ev, value) => setSpeed(value)}

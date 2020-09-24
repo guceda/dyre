@@ -4,6 +4,10 @@ const countWords = (str) => {
   return str.split(" ").length;
 };
 
+const countCharacters = (str) => {
+  return str.length;
+};
+
 const MSCtoWPM = (msc) => {
   
 };
@@ -15,9 +19,7 @@ const MSCtoWPM = (msc) => {
  * @returns {*} MSC milliseconds per character
  */
 
-const WPMtoMSC = (text, wpm) => {
-  const words = countWords(text);
-  const characters = text.length;
+const WPMtoMSC = (words, characters, wpm) => {
   const charactersPerWord = characters/words;
   const msc = 1000/((wpm * charactersPerWord)/60);
   return msc;
@@ -27,4 +29,5 @@ export {
   countWords,
   WPMtoMSC,
   MSCtoWPM,
+  countCharacters,
 }
