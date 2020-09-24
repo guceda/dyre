@@ -75,7 +75,7 @@ export const KanbanCardDemo = function KanbanCard(
         <h3 className={styles.heading}>{title}</h3>
         <p className={styles.subheader}>{lang}</p>
         <p className={styles.subheader}>
-          {`${words} words ${selected && `• ${(words / speed).toFixed(1)}⌛`}`}
+          {`${words} words ${selected && `• ${(words / speed).toFixed(1)}'⌛`}`}
         </p>
         {selected && <Box display={'flex'} alignItems={'center'}>
           <Slider
