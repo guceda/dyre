@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/dyre/static/css/main.e83b19eb.chunk.css",
-    "main.js": "/dyre/static/js/main.9e4689c0.chunk.js",
-    "main.js.map": "/dyre/static/js/main.9e4689c0.chunk.js.map",
+    "main.js": "/dyre/static/js/main.98616aa7.chunk.js",
+    "main.js.map": "/dyre/static/js/main.98616aa7.chunk.js.map",
     "runtime-main.js": "/dyre/static/js/runtime-main.d3e319bd.js",
     "runtime-main.js.map": "/dyre/static/js/runtime-main.d3e319bd.js.map",
-    "static/js/2.4486f388.chunk.js": "/dyre/static/js/2.4486f388.chunk.js",
-    "static/js/2.4486f388.chunk.js.map": "/dyre/static/js/2.4486f388.chunk.js.map",
+    "static/js/2.3e64b76a.chunk.js": "/dyre/static/js/2.3e64b76a.chunk.js",
+    "static/js/2.3e64b76a.chunk.js.map": "/dyre/static/js/2.3e64b76a.chunk.js.map",
     "index.html": "/dyre/index.html",
-    "precache-manifest.915712e580da6e8965988081968d164d.js": "/dyre/precache-manifest.915712e580da6e8965988081968d164d.js",
+    "precache-manifest.44f12da9194b0f8ee0cc48cf993dfe52.js": "/dyre/precache-manifest.44f12da9194b0f8ee0cc48cf993dfe52.js",
     "service-worker.js": "/dyre/service-worker.js",
     "static/css/main.e83b19eb.chunk.css.map": "/dyre/static/css/main.e83b19eb.chunk.css.map",
-    "static/js/2.4486f388.chunk.js.LICENSE.txt": "/dyre/static/js/2.4486f388.chunk.js.LICENSE.txt"
+    "static/js/2.3e64b76a.chunk.js.LICENSE.txt": "/dyre/static/js/2.3e64b76a.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.d3e319bd.js",
-    "static/js/2.4486f388.chunk.js",
+    "static/js/2.3e64b76a.chunk.js",
     "static/css/main.e83b19eb.chunk.css",
-    "static/js/main.9e4689c0.chunk.js"
+    "static/js/main.98616aa7.chunk.js"
   ]
 }
