@@ -63,7 +63,7 @@ const useSliderStyles = makeStyles(() => ({
 }));
 
 export const KanbanCardDemo = function KanbanCard(
-  { onClick, selected, title, lang, words, level }) {
+  { onClick, selected, title, lang, words, level, speed, setSpeed }) {
   const styles = useStyles(selected);
   const sliderStyles = useSliderStyles();
   return (
@@ -72,10 +72,18 @@ export const KanbanCardDemo = function KanbanCard(
         <h3 className={styles.heading}>{title}</h3>
         <p className={styles.subheader}>{`${lang} • ${words} words`}</p>
 
-        <Box display={'flex'} alignItems={'center'}>
-          <Slider classes={sliderStyles} defaultValue={level*10} />
-          <span className={styles.value}>{`${level}/10`}</span>
-        </Box>
+        {selected && <Box display={'flex'} alignItems={'center'}>
+          <Slider
+            classes={sliderStyles}
+            onChange={(ev, value) => setSpeed(value)}
+            value={speed}
+            marks={true}
+            step={20}
+            min={150}
+            max={800}
+          />
+          <span className={styles.value}>{`${speed}wpm`}</span>
+        </Box>}
       </Box>
     </Card>
   );

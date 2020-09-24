@@ -146,6 +146,8 @@ function App() {
           theme={theme}
           open={state === ST.STOP}
           start={() => setState(ST.RUNNING)}
+          speed={speed}
+          setSpeed={setSpeed}
         />
       </div>
     </>
