@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   restore: {
     color: 'white',
     opacity: 0.8,
-    padding: '5px 10px',
+    padding: '0px 10px',
   },
   speedLegend: {
     padding: '5px 10px',
@@ -138,12 +138,25 @@ const PrettoSlider = withStyles({
     height: 8,
     borderRadius: 4,
   },
+
 })(Slider);
 
 
 
 const Menu = (
-  { theme, open, title, stop, changeTheme, speed, setSpeed, defaultSpeed }) => {
+  {
+    theme,
+    open,
+    title,
+    stop,
+    changeTheme,
+    speed,
+    setSpeed,
+    defaultSpeed,
+    characters,
+    defaultCharacters,
+    setCharacters
+  }) => {
 
   const classes = useStyles();
 
@@ -162,22 +175,26 @@ const Menu = (
             </Tooltip>
           </Grid>
           <Grid item xs={12} className={classes.options}>
-            <Grid item xs={2}>
+            <Grid item xs={2} style={{ marginBottom: '14px' }}>
               <Typography component="div">
                 <Grid component="label" container alignItems="center" spacing={1}>
                   <Tooltip title="Change theme" arrow>
                     <Grid item>
-                      <AntSwitch checked={theme.id === 'light'} onChange={changeTheme} name="checkedC" />
+                      <AntSwitch
+                        checked={theme.id === 'light'}
+                        onChange={changeTheme} name="checkedC"
+                      />
                     </Grid>
                   </Tooltip>
                 </Grid>
               </Typography>
             </Grid>
-            <Grid item xs={2}>
-              {/* Empty slot */}
-            </Grid>
+           
             <Grid container direction={'row'}>
               <Grid item xs={11}>
+                <Typography gutterBottom style={{ color: 'white' }}>
+                  Speed
+                 </Typography>
                 <PrettoSlider
                   onChange={(ev, value) => setSpeed(value)}
                   value={speed}
@@ -189,21 +206,47 @@ const Menu = (
                   max={800}
                 />
               </Grid>
-              {speed !== defaultSpeed && <Grid item xs={1}>
-                <Tooltip title="Restore default speed" arrow >
-                  <IconButton
-                    className={classes.restore}
-                    onClick={() => setSpeed(defaultSpeed)}
-                  >
-                    <SettingsBackupRestoreIcon />
-                  </IconButton>
-                </Tooltip>
-              </Grid>}
+              {speed !== defaultSpeed &&
+                <Grid item xs={1} style={{ alignSelf: 'center', marginBottom: '-21px' }}>
+                  <Tooltip title="Restore default speed" arrow >
+                    <IconButton
+                      className={classes.restore}
+                      onClick={() => setSpeed(defaultSpeed)}
+                    >
+                      <SettingsBackupRestoreIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>}
+            </Grid>
+            <Grid container direction={'row'} style={{marginLeft: '27px'}}>
+              <Grid item xs={11}>
+                <Typography gutterBottom style={{ color: 'white' }}>
+                  Characters
+                 </Typography>
+                <PrettoSlider
+                  onChange={(ev, value) => setCharacters(value)}
+                  value={characters}
+                  aria-labelledby="discrete-slider"
+                  valueLabelDisplay="auto"
+                  marks={true}
+                  step={1}
+                  min={5}
+                  max={35}
+                />
+              </Grid>
+              {characters !== defaultCharacters &&
+                <Grid item xs={1} style={{ alignSelf: 'center', marginBottom: '-21px' }}>
+                  <Tooltip title="Restore default characters" arrow >
+                    <IconButton
+                      className={classes.restore}
+                      onClick={() => setCharacters(defaultCharacters)}
+                    >
+                      <SettingsBackupRestoreIcon />
+                    </IconButton>
+                  </Tooltip>
+                </Grid>}
             </Grid>
 
-            <Grid item xs={2}>
-              {/* Empty slot */}
-              </Grid>
             <Grid item xs={2} className={classes.stopContainer}>
               <Tooltip title="Stop Reading" arrow>
                 <IconButton onClick={stop}>

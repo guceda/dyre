@@ -140,6 +140,9 @@ function App() {
           speed={speed}
           setSpeed={setSpeed}
           defaultSpeed={DEFAULT.SPEED}
+          characters={characters}
+          setCharacters={setCharacters}
+          defaultCharacters={DEFAULT.CHARACTERS}
         />
         <BackdropCmp
           texts={texts}
