@@ -12,5 +12,4 @@
 - Tooltip speed
 
 ### V2
-- Text selection
 - Add logo on stop
