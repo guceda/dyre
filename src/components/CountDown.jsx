@@ -22,14 +22,14 @@ const useStyles = makeStyles(() => ({
 const CountDown = ({ open, close }) => {
 
   const classes = useStyles();
-  const [count, setCount] = useState(4);
+  const [count, setCount] = useState(3);
 
   
   useEffect(() => {
     let timer;
     if (count === 0) {
       close();
-      setCount(4)
+      setCount(3)
       return () => clearInterval(timer);
     } else {
       timer = setInterval(() => setCount(count - 1), 1000);
