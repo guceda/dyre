@@ -147,10 +147,6 @@ const Menu = (
 
   const classes = useStyles();
 
-  const valueText = (value) => {
-    return `${value}°C`;
-  }
-
   return (
     <Modal open={open}>
       <div className={classes.root}>
@@ -185,7 +181,6 @@ const Menu = (
                 <PrettoSlider
                   onChange={(ev, value) => setSpeed(value)}
                   value={speed}
-                  getAriaValueText={valueText}
                   aria-labelledby="discrete-slider"
                   valueLabelDisplay="auto"
                   marks={true}
