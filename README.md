@@ -15,7 +15,7 @@ cd dyre
 npm ci
 ```
 
-## Run in development mode
+## Run in development mode
 
 `npm start`
 
