@@ -12,9 +12,10 @@ import themes from './themes';
 import { makeStyles } from "@material-ui/core/styles";
 
 import { WPMtoMSC } from './utils/utils';
+import CountDown from './components/CountDown';
 
 
-const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop' };
+const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop', READY: 'ready' };
 const DEFAULT = {
   SPEED: 250, //wpm
   TEXT: texts[4],
@@ -29,7 +30,7 @@ const useStyles = makeStyles(() => ({
   body: {
     backgroundColor: ({ background }) => background,
     height: '100vh',
-    overflow:'hidden',
+    overflow: 'hidden',
   },
   progress: {
     zIndex: '100'
@@ -67,7 +68,7 @@ function App() {
     if (counter < text.content.length) {
       timer = setInterval(() => {
         setCounter(counter + 1)
-      },  WPMtoMSC(text.words, text.characters, speed));
+      }, WPMtoMSC(text.words, text.characters, speed));
     } else {
       setState(ST.STOP);
       setCounter(0);
@@ -85,10 +86,10 @@ function App() {
           //go a bit back to ease recovery
           setCounter(counter > 42 ? counter - 40 : counter); //FIXME: make it better
         } else if (state === ST.PAUSE) {
-          setState(ST.RUNNING);
+          setState(ST.READY);
         } else if (state === ST.STOP) {
           console.log(`Start at ${Date.now()}`)
-          setState(ST.RUNNING);
+          setState(ST.READY);
         }
       }
     }
@@ -150,6 +151,13 @@ function App() {
           speed={speed}
           setSpeed={setSpeed}
         />
+        {
+          state === ST.READY &&
+          <CountDown
+            open={state === ST.READY}
+            close={() => setState(ST.RUNNING)}
+          />
+        }
       </div>
     </>
   );

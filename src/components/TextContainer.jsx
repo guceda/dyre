@@ -34,6 +34,9 @@ const TextContainer = function ({ text, caretPos, characters, state, theme }) {
   useEffect(() => {
     textRef.current.focus(); // FIXME: remove;
     switch (state) {
+      case 'ready':
+        setSelectionRange(textRef.current, caretPos, caretPos + characters);
+        break;
       case 'running':
         setSelectionRange(textRef.current, caretPos, caretPos + characters);
         break;
@@ -44,7 +47,7 @@ const TextContainer = function ({ text, caretPos, characters, state, theme }) {
         setSelectionRange(textRef.current, 0, caretPos + characters);
         break;
       default:
-        // not needed;
+        //not needed;
         break;
     }
   }, [caretPos, characters, state])
