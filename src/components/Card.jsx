@@ -28,6 +28,7 @@ const useStyles = makeStyles(({ spacing, palette }) => {
     heading: {
       margin: 0,
       fontSize: 16,
+      minHeight: '45px',
     },
     subheader: {
       fontSize: 14,
@@ -45,6 +46,7 @@ const useStyles = makeStyles(({ spacing, palette }) => {
 
 const useSliderStyles = makeStyles(() => ({
   root: {
+    cursor:'ew-resize',
     height: 4,
   },
   rail: {
