@@ -29,6 +29,7 @@ const useStyles = makeStyles(() => ({
   body: {
     backgroundColor: ({ background }) => background,
     height: '100vh',
+    overflow:'hidden',
   },
   progress: {
     zIndex: '100'
