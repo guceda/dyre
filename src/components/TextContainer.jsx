@@ -44,6 +44,7 @@ const TextContainer = function ({ text, caretPos, characters, state, theme }) {
         setSelectionRange(textRef.current, 0, caretPos + characters);
         break;
       default:
+        // not needed;
         break;
     }
   }, [caretPos, characters, state])

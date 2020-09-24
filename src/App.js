@@ -32,6 +32,13 @@ const useStyles = makeStyles(() => ({
   },
   progress: {
     zIndex: '100'
+  },
+  speed: {
+    color: 'rgba(112,112,112,0.8)',
+    position: 'absolute',
+    width: '100%',
+    textAlign: 'right',
+    padding: '20px',
   }
 }));
 
@@ -112,6 +119,7 @@ function App() {
           value={progressPct()}
           className={classes.progress}
         />
+        <div className={classes.speed}>{speed} WPM</div>
         <TextContainer
           theme={theme}
           state={state}
@@ -127,6 +135,7 @@ function App() {
           stop={handleStop}
           speed={speed}
           setSpeed={setSpeed}
+          defaultSpeed={DEFAULT.SPEED}
         />
         <BackdropCmp
           theme={theme}

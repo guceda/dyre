@@ -1,6 +1,8 @@
 import React from 'react';
 import StopIcon from '@material-ui/icons/Stop';
 import PauseIcon from '@material-ui/icons/Pause';
+import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
+
 
 import {
   IconButton,
@@ -61,6 +63,16 @@ const useStyles = makeStyles((theme) => ({
   },
   switch: {
     color: 'white',
+  },
+  restore: {
+    color: 'white',
+    opacity: 0.8,
+    padding: '5px 10px',
+  },
+  speedLegend: {
+    padding: '5px 10px',
+    color: 'white',
+    opacity: 0.8
   }
 }));
 
@@ -130,7 +142,8 @@ const PrettoSlider = withStyles({
 
 
 
-const Menu = ({ theme, open, title, stop, changeTheme, speed, setSpeed }) => {
+const Menu = (
+  { theme, open, title, stop, changeTheme, speed, setSpeed, defaultSpeed }) => {
 
   const classes = useStyles();
 
@@ -146,7 +159,7 @@ const Menu = ({ theme, open, title, stop, changeTheme, speed, setSpeed }) => {
             <h2 className={classes.title}>{title}</h2>
           </Grid>
           <Grid item xs={12} className={classes.pauseContainer}>
-            <Tooltip title="Press space bar to resume reading">
+            <Tooltip title="Press space bar to resume reading" arrow>
               <IconButton>
                 <PauseIcon className={classes.pause} />
               </IconButton>
@@ -156,38 +169,48 @@ const Menu = ({ theme, open, title, stop, changeTheme, speed, setSpeed }) => {
             <Grid item xs={2}>
               <Typography component="div">
                 <Grid component="label" container alignItems="center" spacing={1}>
-                  {/* <Grid className={classes.switch} item>dark</Grid> */}
-                  <Tooltip title="Change theme">
+                  <Tooltip title="Change theme" arrow>
                     <Grid item>
                       <AntSwitch checked={theme.id === 'light'} onChange={changeTheme} name="checkedC" />
                     </Grid>
-                    {/* <Grid className={classes.switch} item>light</Grid> */}
                   </Tooltip>
                 </Grid>
               </Typography>
             </Grid>
             <Grid item xs={2}>
-              {/* <Paper className={classes.paper}>xs=pollo</Paper> */}
+              {/* Empty slot */}
             </Grid>
-            <Grid item xs={4}>
-              <PrettoSlider
-                onChange={(ev,value) => setSpeed(value)}
-                value={speed}
-                getAriaValueText={valueText}
-                aria-labelledby="discrete-slider"
-                valueLabelDisplay="auto"
-                marks={true}
-                step={20}
-                min={150}
-                max={800}
-              />
+            <Grid container xs={4} direction={'row'}>
+              <Grid item xs={11}>
+                <PrettoSlider
+                  onChange={(ev, value) => setSpeed(value)}
+                  value={speed}
+                  getAriaValueText={valueText}
+                  aria-labelledby="discrete-slider"
+                  valueLabelDisplay="auto"
+                  marks={true}
+                  step={20}
+                  min={150}
+                  max={800}
+                />
+              </Grid>
+              {speed !== defaultSpeed && <Grid item xs={1}>
+                <Tooltip title="Restore default speed" arrow >
+                  <IconButton
+                    className={classes.restore}
+                    onClick={() => setSpeed(defaultSpeed)}
+                  >
+                    <SettingsBackupRestoreIcon />
+                  </IconButton>
+                </Tooltip>
+              </Grid>}
             </Grid>
 
             <Grid item xs={2}>
-              {/* <Paper className={classes.paper}>xs=3</Paper> */}
-            </Grid>
+              {/* Empty slot */}
+              </Grid>
             <Grid item xs={2} className={classes.stopContainer}>
-              <Tooltip title="Stop Reading">
+              <Tooltip title="Stop Reading" arrow>
                 <IconButton onClick={stop}>
                   <StopIcon className={classes.stop} />
                 </IconButton>
@@ -196,8 +219,8 @@ const Menu = ({ theme, open, title, stop, changeTheme, speed, setSpeed }) => {
           </Grid>
 
         </Grid>
-      </div>
-    </Modal>
+      </div >
+    </Modal >
   );
 }
 
