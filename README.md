@@ -52,5 +52,4 @@ This will generate a production build and deploy it in github pages. It will be 
 
 ```sh
 npm run deploy
-npm publish
 ```
