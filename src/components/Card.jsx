@@ -35,6 +35,7 @@ const useStyles = makeStyles(({ spacing, palette }) => {
       color: palette.grey[600],
       letterSpacing: '1px',
       marginBottom: 4,
+      marginTop: 0,
     },
     value: {
       marginLeft: 8,
@@ -46,7 +47,7 @@ const useStyles = makeStyles(({ spacing, palette }) => {
 
 const useSliderStyles = makeStyles(() => ({
   root: {
-    cursor:'ew-resize',
+    cursor: 'ew-resize',
     height: 4,
   },
   rail: {
@@ -72,8 +73,10 @@ export const KanbanCardDemo = function KanbanCard(
     <Card onClick={onClick} className={cx(styles.card)} elevation={0}>
       <Box>
         <h3 className={styles.heading}>{title}</h3>
-        <p className={styles.subheader}>{`${lang} • ${words} words`}</p>
-
+        <p className={styles.subheader}>{lang}</p>
+        <p className={styles.subheader}>
+          {`${words} words ${selected && `• ${(words / speed).toFixed(1)}⌛`}`}
+        </p>
         {selected && <Box display={'flex'} alignItems={'center'}>
           <Slider
             classes={sliderStyles}
