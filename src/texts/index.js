@@ -28,7 +28,7 @@ const texts = [
   },
 ];
 
-const enriched = texts.map((text,idx) => ({
+const enriched = [...texts,...texts].map((text,idx) => ({
   ...text,
   id:idx,
   words: countWords(text.content),
