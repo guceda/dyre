@@ -8,7 +8,7 @@ import Progress from "./components/Progress";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import { WPMtoMSC, MSCtoWPM} from "./utils/utils";
+import { WPMtoMSC, MSCtoWPM } from "./utils/utils";
 import CountDown from "./components/CountDown";
 
 let t0;
@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function App({ DEFAULT, ST, texts, themes}) {
+function App({ DEFAULT, ST, texts, themes }) {
   const [counter, setCounter] = useState(0);
   const [state, setState] = useState(DEFAULT.STATUS);
   const [theme, setTheme] = useState(DEFAULT.THEME);
@@ -50,16 +50,18 @@ function App({ DEFAULT, ST, texts, themes}) {
     const msc = WPMtoMSC(text.words, text.allCharacters, speed);
 
     if (counter < text.content.length) {
-      timer = setInterval(() => {
-        setCounter(counter + 1);
-      },msc);
+      timer = setInterval(() => setCounter(counter + 1), msc);
     } else {
       t1 = Date.now();
       window.logger.log("READING END");
-      window.logger.log('EXPECTED IN ' + ((text.words/speed)).toFixed(3) + ' min');
-      window.logger.log('DONE IN ' + ((t1 - t0)/60000).toFixed(3) + ' min');
-      window.logger.log('WPM CALCULATED ' + MSCtoWPM(text.words, text.allCharacters, msc));
-      window.logger.log('WPM BY TIME ' + ((text.words * 60000)/(t1 - t0)));
+      window.logger.log(
+        "EXPECTED IN " + (text.words / speed).toFixed(3) + " min"
+      );
+      window.logger.log("DONE IN " + ((t1 - t0) / 60000).toFixed(3) + " min");
+      window.logger.log(
+        "WPM CALCULATED " + MSCtoWPM(text.words, text.allCharacters, msc)
+      );
+      window.logger.log("WPM BY TIME " + (text.words * 60000) / (t1 - t0));
       setState(ST.STOP);
       setCounter(0);
     }
@@ -111,7 +113,7 @@ function App({ DEFAULT, ST, texts, themes}) {
           value={(counter * 100) / text.content.length}
           className={classes.progress}
         />
-        <div className={classes.speed}>{speed} WPM</div>
+        <div className={classes.speed}>{speed}</div>
         <TextContainer
           theme={theme}
           state={state}

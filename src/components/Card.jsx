@@ -99,9 +99,9 @@ export const KanbanCardDemo = function KanbanCard({
               marks={true}
               step={10}
               min={150}
-              max={800}
+              max={1000}
             />
-            <span className={styles.value}>{`${speed}wpm`}</span>
+            <span className={styles.value}>{`${speed}`}</span>
           </Box>
         )}
       </Box>

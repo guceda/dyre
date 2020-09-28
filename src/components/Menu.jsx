@@ -203,7 +203,7 @@ const Menu = (
                   marks={true}
                   step={10}
                   min={150}
-                  max={800}
+                  max={1000}
                 />
               </Grid>
               {speed !== defaultSpeed &&
