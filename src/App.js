@@ -115,7 +115,7 @@ function App({ DEFAULT, ST, texts, themes }) {
           value={(counter * 100) / text.content.length}
           className={classes.progress}
         />
-        <div className={classes.speed}>{speed}</div>
+        <div className={classes.speed}>{speed} WPS</div>
         <TextContainer
           theme={theme}
           state={state}

@@ -100,7 +100,7 @@ export const KanbanCardDemo = function KanbanCard({
               min={150}
               max={1000}
             />
-            <span className={styles.value}>{`${speed}`}</span>
+            <span className={styles.value}>{`${speed}wpm`}</span>
           </Box>
         )}
       </Box>
