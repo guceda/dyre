@@ -12,7 +12,6 @@ import {
   Typography,
   withStyles,
   Switch,
-  Paper,
   Tooltip,
   Slider
 } from '@material-ui/core';

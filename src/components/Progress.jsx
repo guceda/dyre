@@ -1,5 +1,3 @@
-import Reacto from 'react';
-
 import { LinearProgress, withStyles } from "@material-ui/core";
 
 
