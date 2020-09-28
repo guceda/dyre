@@ -31,8 +31,7 @@ export default [
     lang: "english",
     level: null,
     title: "Reading Extract with line breaks",
-    content: `
-Reading is becoming more and more important in the new knowledge economy and remains the most effective human activity for transforming information into knowledge.
+    content: `Reading is becoming more and more important in the new knowledge economy and remains the most effective human activity for transforming information into knowledge.
 
 If top readers read at speeds of above 1000 words per minute (wpm) with near 85% comprehension, they only represent 1% of readers. Average readers are the majority and only reach around 200 wpm with a typical comprehension of 60%. This seems surprising since most readers, actively reading work documents, newspapers, magazines, books or the contents of a computer display are practicing daily for at least one hour. With such an intense training everyone should be close to top performances.
     
