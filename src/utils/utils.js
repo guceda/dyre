@@ -26,7 +26,8 @@ const WPMtoMSC = (words, allCharacters, wpm) => {
   const characterPerMin = wpm * charactersPerWord;
   const charactersPerSecond = characterPerMin / 60;
   const msc = 1000 / charactersPerSecond;
-  return msc;
+  //TODO: remove division
+  return msc/2.5;
 };
 
 export { countWords, WPMtoMSC, MSCtoWPM, countCharacters };
