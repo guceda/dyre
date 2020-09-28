@@ -1,54 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
 
-import texts from './texts';
-
-import TextContainer from './components/TextContainer';
-import Menu from './components/Menu';
-import BackdropCmp from './components/Backdrop';
-import Progress from './components/Progress';
-import themes from './themes';
+import TextContainer from "./components/TextContainer";
+import Menu from "./components/Menu";
+import BackdropCmp from "./components/Backdrop";
+import Progress from "./components/Progress";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import { WPMtoMSC } from './utils/utils';
-import CountDown from './components/CountDown';
-
-
-const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop', READY: 'ready' };
-const DEFAULT = {
-  SPEED: 250, //wpm
-  TEXT: texts[3],
-  CHARACTERS: 15,
-  THEME: themes.dark,
-  STATUS: ST.STOP,
-};
-
+import { WPMtoMSC } from "./utils/utils";
+import CountDown from "./components/CountDown";
 
 
 const useStyles = makeStyles(() => ({
   body: {
     backgroundColor: ({ background }) => background,
-    height: '100vh',
-    overflow: 'hidden',
+    height: "100vh",
+    overflow: "hidden",
   },
   progress: {
-    zIndex: '100'
+    zIndex: "100",
   },
   speed: {
-    color: 'rgba(112,112,112,0.8)',
-    position: 'absolute',
-    width: '100%',
-    textAlign: 'right',
-    padding: '20px',
-  }
+    color: "rgba(112,112,112,0.8)",
+    position: "absolute",
+    width: "100%",
+    textAlign: "right",
+    padding: "20px",
+  },
 }));
 
-
-
-
-function App() {
-
+function App({ DEFAULT, ST, texts, themes}) {
   const [counter, setCounter] = useState(0);
   const [state, setState] = useState(DEFAULT.STATUS);
   const [theme, setTheme] = useState(DEFAULT.THEME);
@@ -58,7 +40,6 @@ function App() {
 
   const classes = useStyles(theme);
 
-
   // HANDLE SELECTION MOVEMENT;
   useEffect(() => {
     if (state !== ST.RUNNING) return;
@@ -67,12 +48,12 @@ function App() {
 
     if (counter < text.content.length) {
       timer = setInterval(() => {
-        setCounter(counter + 1)
+        setCounter(counter + 1);
       }, WPMtoMSC(text.words, text.characters, speed));
     } else {
       setState(ST.STOP);
       setCounter(0);
-      console.log(`Done at ${Date.now()}`)
+      window.logger.log("READING END");
     }
     return () => clearInterval(timer);
   }, [counter, speed, text, state]);
@@ -82,37 +63,40 @@ function App() {
     document.body.onkeyup = function (e) {
       if (e.keyCode === 32) {
         if (state === ST.RUNNING) {
+          window.logger.log("PAUSE");
           setState(ST.PAUSE);
           //go a bit back to ease recovery
           setCounter(counter > 42 ? counter - 40 : counter); //FIXME: make it better
         } else if (state === ST.PAUSE) {
+          window.logger.log("COUNTDOWN");
           setState(ST.READY);
         } else if (state === ST.STOP) {
-          console.log(`Start at ${Date.now()}`)
+          window.logger.log("COUNTDOWN");
           setState(ST.READY);
         }
       }
-    }
-  }, [state, counter])
-
+    };
+  }, [state, counter]);
 
   const handleStop = () => {
+    window.logger.log("STOP");
     setCounter(0);
     setState(ST.STOP);
-  }
+  };
 
   const progressPct = () => {
     return (counter * 100) / text.content.length;
-  }
+  };
 
   const handleBodyClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-  }
+  };
 
   const changeTheme = () => {
-    setTheme(themes[theme.id === 'light' ? 'dark' : 'light']);
-  }
+    window.logger.log("THEME CHANGE");
+    setTheme(themes[theme.id === "light" ? "dark" : "light"]);
+  };
 
   return (
     <>
@@ -138,33 +122,46 @@ function App() {
           changeTheme={changeTheme}
           stop={handleStop}
           speed={speed}
-          setSpeed={setSpeed}
+          setSpeed={(speed) => {
+            setSpeed(speed);
+            window.logger.log(`SET SPEED: ${speed}`);
+          }}
           defaultSpeed={DEFAULT.SPEED}
           characters={characters}
-          setCharacters={setCharacters}
+          setCharacters={(characters) => {
+            setCharacters(characters);
+            window.logger.log(`SET CHARACTERS: ${characters}`);
+          }}
           defaultCharacters={DEFAULT.CHARACTERS}
         />
         <BackdropCmp
           texts={texts}
           selectedText={text}
-          setText={setText}
+          setText={(text) => {
+            setText(text);
+            window.logger.log(`SET TEXT: ${text.title}`);
+          }}
           theme={theme}
           open={state === ST.STOP}
           start={() => setState(ST.RUNNING)}
           speed={speed}
-          setSpeed={setSpeed}
+          setSpeed={(speed) => {
+            setSpeed(speed);
+            window.logger.log(`SET SPEED: ${speed}`);
+          }}
         />
-        {
-          state === ST.READY &&
+        {state === ST.READY && (
           <CountDown
             open={state === ST.READY}
-            close={() => setState(ST.RUNNING)}
+            close={() => {
+              window.logger.log("READING START");
+              setState(ST.RUNNING);
+            }}
           />
-        }
+        )}
       </div>
     </>
   );
-
 }
 
 export default App;

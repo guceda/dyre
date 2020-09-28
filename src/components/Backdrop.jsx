@@ -44,8 +44,6 @@ const BackdropCmp = (
 
   const classes = useStyles();
 
-  debugger;
-
   return (
     <Backdrop className={classes.backdrop} open={open} onClick={() => { }}>
       <Grid container className={classes.container} direction={'col'}>
