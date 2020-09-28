@@ -18,7 +18,7 @@ import CountDown from './components/CountDown';
 const ST = { RUNNING: 'running', PAUSE: 'pause', STOP: 'stop', READY: 'ready' };
 const DEFAULT = {
   SPEED: 250, //wpm
-  TEXT: texts[4],
+  TEXT: texts[3],
   CHARACTERS: 15,
   THEME: themes.dark,
   STATUS: ST.STOP,
