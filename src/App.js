@@ -66,7 +66,7 @@ function App({ DEFAULT, ST, texts, themes }) {
       setCounter(0);
     }
     return () => clearInterval(timer);
-  }, [counter, speed, text, state]);
+  }, [counter, speed, text, state, ST.STOP, ST.RUNNING]);
 
   //ON SPACEBAR CLICK;
   useEffect(() => {
@@ -86,7 +86,7 @@ function App({ DEFAULT, ST, texts, themes }) {
         }
       }
     };
-  }, [state, counter]);
+  }, [state, counter, ST.PAUSE, ST.READY, ST.RUNNING, ST.STOP]);
 
   const handleStop = () => {
     window.logger.log("STOP");
