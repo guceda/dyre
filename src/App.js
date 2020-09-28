@@ -8,9 +8,11 @@ import Progress from "./components/Progress";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import { WPMtoMSC } from "./utils/utils";
+import { WPMtoMSC, MSCtoWPM} from "./utils/utils";
 import CountDown from "./components/CountDown";
 
+let t0;
+let t1;
 
 const useStyles = makeStyles(() => ({
   body: {
@@ -45,15 +47,21 @@ function App({ DEFAULT, ST, texts, themes}) {
     if (state !== ST.RUNNING) return;
 
     let timer;
+    const msc = WPMtoMSC(text.words, text.allCharacters, speed);
 
     if (counter < text.content.length) {
       timer = setInterval(() => {
         setCounter(counter + 1);
-      }, WPMtoMSC(text.words, text.characters, speed));
+      },msc);
     } else {
+      t1 = Date.now();
+      window.logger.log("READING END");
+      window.logger.log('EXPECTED IN ' + ((text.words/speed)).toFixed(3) + ' min');
+      window.logger.log('DONE IN ' + ((t1 - t0)/60000).toFixed(3) + ' min');
+      window.logger.log('WPM CALCULATED ' + MSCtoWPM(text.words, text.allCharacters, msc));
+      window.logger.log('WPM BY TIME ' + ((text.words * 60000)/(t1 - t0)));
       setState(ST.STOP);
       setCounter(0);
-      window.logger.log("READING END");
     }
     return () => clearInterval(timer);
   }, [counter, speed, text, state]);
@@ -84,10 +92,6 @@ function App({ DEFAULT, ST, texts, themes}) {
     setState(ST.STOP);
   };
 
-  const progressPct = () => {
-    return (counter * 100) / text.content.length;
-  };
-
   const handleBodyClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -104,7 +108,7 @@ function App({ DEFAULT, ST, texts, themes}) {
         <Progress
           thickness={14}
           variant="determinate"
-          value={progressPct()}
+          value={(counter * 100) / text.content.length}
           className={classes.progress}
         />
         <div className={classes.speed}>{speed} WPM</div>
@@ -155,6 +159,7 @@ function App({ DEFAULT, ST, texts, themes}) {
             open={state === ST.READY}
             close={() => {
               window.logger.log("READING START");
+              t0 = Date.now();
               setState(ST.RUNNING);
             }}
           />
