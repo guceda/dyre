@@ -11,6 +11,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { WPMtoMSC, MSCtoWPM } from "./utils/utils";
 import CountDown from "./components/CountDown";
 
+import interval from 'accurate-interval';
+
 let t0;
 let t1;
 
@@ -50,7 +52,7 @@ function App({ DEFAULT, ST, texts, themes }) {
     const msc = WPMtoMSC(text.words, text.allCharacters, speed);
 
     if (counter < text.content.length) {
-      timer = setInterval(() => setCounter(counter + 1), msc);
+      timer = interval(() => setCounter(counter + 1), msc, {aligned: true, immediate: true});
     } else {
       t1 = Date.now();
       window.logger.log("READING END");
@@ -65,7 +67,7 @@ function App({ DEFAULT, ST, texts, themes }) {
       setState(ST.STOP);
       setCounter(0);
     }
-    return () => clearInterval(timer);
+    return () => timer && timer.clear();
   }, [counter, speed, text, state, ST.STOP, ST.RUNNING]);
 
   //ON SPACEBAR CLICK;
