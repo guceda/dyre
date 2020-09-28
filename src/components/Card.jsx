@@ -97,7 +97,7 @@ export const KanbanCardDemo = function KanbanCard({
               onChange={(ev, value) => setSpeed(value)}
               value={speed}
               marks={true}
-              step={20}
+              step={10}
               min={150}
               max={800}
             />

@@ -201,7 +201,7 @@ const Menu = (
                   aria-labelledby="discrete-slider"
                   valueLabelDisplay="auto"
                   marks={true}
-                  step={20}
+                  step={10}
                   min={150}
                   max={800}
                 />
