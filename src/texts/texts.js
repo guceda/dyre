@@ -23,7 +23,7 @@ export default [
   {
     lang: "english",
     level: null,
-    title: "AI and cameras",
+    title: "AI for surface detection",
     content:
       "An AI linked to a camera can tell the physical properties of surfaces without touching them. Matthew Purri and Kristin Dana at Rutgers University in New Jersey have trained an algorithm that can determine the tactile traits of an object when presented solely with a photograph or series of images of it. They took photographs of more than 400 materials, including cloth, plastic, leather and wood surfaces. The pair took 100 images of each surface using a device with an arm that can be moved to take photos at exact camera angles. These images were linked to an existing data set about the materials. For each material, 15 physical properties were logged in categories including friction, adhesion and texture. Using all this, they trained a deep-learning algorithm and tested it on surfaces it hadn’t seen before. Given a single image taken from directly above an object, the algorithm could reliably estimate 14 of its 15 surface properties. The researchers believe the algorithm could be used in robots and in cars to improve road safety by estimating the surface properties of roads.",
   },
