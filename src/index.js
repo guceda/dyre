@@ -9,7 +9,7 @@ import Logger from "./utils/Logger";
 import texts from "./texts";
 import themes from "./themes";
 
-window.logger = new Logger();
+window.logger = new Logger(); //FIXME: this is shit;
 
 const ST = { RUNNING: "running", PAUSE: "pause", STOP: "stop", READY: "ready" };
 
