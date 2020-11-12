@@ -1,7 +1,7 @@
 # DYnamic text masking for improved REading on digital devices.
 
 ## Description
-
+Dynamica text masking tool for improved reading on digital devices. A working demo can be accessed under the following link: [guceda/dyre](https://guceda.github.io/dyre/)
 
 ## Installing / Getting started 🔧
 
