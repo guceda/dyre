@@ -1,7 +1,7 @@
 # DYnamic text masking for improved REading on digital devices.
 
 ## Description
-Dynamica text masking tool for improved reading on digital devices. A working demo can be accessed under the following link: [guceda/dyre](https://guceda.github.io/dyre/) (full-screen chrome)
+Dynamica text masking tool for improved reading on digital devices. A working demo can be accessed under the following link: [guceda/dyre](https://guceda.github.io/dyre/)
 
 ## Installing / Getting started 🔧
 
@@ -48,7 +48,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## Deployment
 
 This will generate a production build and deploy it in github pages. It will be accesible under the following link:
-`https://guceda.github.io/dyre/`
+[guceda.github.io/dyre](https://guceda.github.io/dyre/)
 
 ```sh
 npm run deploy
