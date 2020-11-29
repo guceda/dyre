@@ -13,7 +13,7 @@ const useStyles = makeStyles(({ spacing, palette }) => {
       margin: "7px",
       display: "flex",
       padding: spacing(2),
-      minWidth: 288,
+      //minWidth: 288,
       borderRadius: 12,
       boxShadow: "0 2px 4px 0 rgba(138, 148, 159, 0.2)",
       "& > *:nth-child(1)": {
