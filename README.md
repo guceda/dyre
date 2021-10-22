@@ -1,7 +1,11 @@
 # DYnamic text masking for improved REading on digital devices.
 
+## Supporting paper
+[GonzaloOscarUcedaCastro_LiuMiaomiao_Final_Report_20201129.pdf](https://github.com/guceda/dyre/files/7394414/GonzaloOscarUcedaCastro_LiuMiaomiao_Final_Report_20201129.pdf)
+
 ## Description
 Dynamica text masking tool for improved reading on digital devices. A working demo can be accessed under the following link: [guceda/dyre](https://guceda.github.io/dyre/)
+<img width="1680" alt="Screen Shot 2021-10-22 at 08 11 01" src="https://user-images.githubusercontent.com/16487828/138396662-08748a0c-1175-40fd-a66e-0b20bc455abd.png">
 
 ## Installing / Getting started 🔧
 
