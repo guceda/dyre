@@ -1,4 +1,4 @@
-# DYnamic text masking for improved REading on digital devices.
+# Dynamic text masking for improved Reading on digital devices.
 
 ## Supporting paper
 [Gonzalo Uceda, Miaomiao Liu, "Dynamic text masking for improved Reading on digital devices."](https://github.com/guceda/dyre/files/7394414/GonzaloOscarUcedaCastro_LiuMiaomiao_Final_Report_20201129.pdf)
